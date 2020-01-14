@@ -14,6 +14,8 @@ defmodule LunchWeb.ChannelCase do
   """
 
   use ExUnit.CaseTemplate
+  alias Ecto.Adapters.SQL.Sandbox
+  alias Lunch.Repo
 
   using do
     quote do
@@ -26,10 +28,10 @@ defmodule LunchWeb.ChannelCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Lunch.Repo)
+    :ok = Sandbox.checkout(Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Lunch.Repo, {:shared, self()})
+      Sandbox.mode(Repo, {:shared, self()})
     end
 
     :ok
