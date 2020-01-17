@@ -1,0 +1,8 @@
+<%= if not authenticated?(@conn) do %>
+  <li><%= link gettext("Create Account"), to: Routes.signup_user_path(@conn, :new) %></li>
+  <li><%= link gettext("Log In"), to: Routes.auth_user_path(@conn, :new) %></li>
+<% else %>
+  <li><%= gettext("Logged in as %{name}", name: (@conn |> current_user() |> LunchWeb.ProfileView.display_name())) %></li>
+  <li><%= link gettext("Edit Profile"), to: Routes.profile_path(@conn, :edit) %></li>
+  <li><%= link gettext("Logout"), to: Routes.auth_user_path(@conn, :delete), method: :post %></li>
+<% end %>

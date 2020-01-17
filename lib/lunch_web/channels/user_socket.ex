@@ -15,6 +15,8 @@ defmodule LunchWeb.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
+  #
+  # credo:disable-for-next-line Credo.Check.Readability.Specs
   def connect(_params, socket, _connect_info) do
     {:ok, socket}
   end
@@ -29,5 +31,7 @@ defmodule LunchWeb.UserSocket do
   #     LunchWeb.Endpoint.broadcast("user_socket:#{user.id}", "disconnect", %{})
   #
   # Returning `nil` makes this socket anonymous.
+  #
+  # credo:disable-for-next-line Credo.Check.Readability.Specs
   def id(_socket), do: nil
 end

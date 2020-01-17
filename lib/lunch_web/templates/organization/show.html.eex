@@ -1,0 +1,13 @@
+<h1><%= @org.name%></h1>
+<h2><%= gettext("Members") %></h2>
+<ul>
+<%= for org_profile <- @org.organization_profiles do %>
+  <li>
+    (<%= org_profile.role %>)
+    <%= render LunchWeb.ProfileView, "_management_tools.html", %{org_profile: org_profile, org: @org, conn: @conn} %>
+    <%= LunchWeb.ProfileView.display_name(org_profile.profile) %>
+  </li>
+<% end %>
+</ul>
+
+<%= render LunchWeb.InvitationView, "_invitation_management.html", assigns %>

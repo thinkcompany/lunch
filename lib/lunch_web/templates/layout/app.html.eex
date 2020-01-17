@@ -4,23 +4,32 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Lunch · Phoenix Framework</title>
+    <title>Lunch</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body>
     <header>
-      <section class="container">
+      <section>
+        <%= link(img_tag(Routes.static_path(@conn, "/images/phoenix.png"), alt: gettext("%{name} Logo", name: "Lunch"), height: 75), to: logo_link(@conn)) %>
+      </section>
+      <section>
         <nav role="navigation">
           <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
+          <%= render LunchWeb.Membership.IdentityView, "_auth_menu.html", assigns %>
+          <%= if authenticated?(@conn) do %>
+            <li>
+              <%= gettext("Organizations") %>
+              <ul>
+                <%= render LunchWeb.OrganizationView, "_link_list.html", assigns %>
+                <li><%= link gettext("New Group"), to: Routes.membership_organization_path(@conn, :new) %></li>
+              </ul>
+            </li>
+          <% end %>
           </ul>
         </nav>
-        <a href="http://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
       </section>
     </header>
-    <main role="main" class="container">
+    <main role="main">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= render @view_module, @view_template, assigns %>

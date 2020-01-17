@@ -1,0 +1,17 @@
+<div class="container">
+  <h2><%= gettext("Invite user to group") %></h2>
+
+  <%= form_for (@changeset |> IO.inspect), Routes.organization_invitation_path(@conn, :create, @conn.assigns.organization_slug), [multipart: true], fn f -> %>
+    <%= LunchWeb.ErrorView.alert_component(@changeset) %>
+
+    <div class="form-group">
+      <%= label f, :email, gettext("Email"), class: "control-label" %>
+      <%= text_input f, :email, class: "form-control" %>
+      <%= error_tag f, :invite_email %>
+    </div>
+
+    <div class="form-group">
+      <%= submit gettext("Submit"), class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

@@ -42,6 +42,8 @@ defmodule LunchWeb do
       import LunchWeb.ErrorHelpers
       import LunchWeb.Gettext
       alias LunchWeb.Router.Helpers, as: Routes
+
+      import LunchWeb.AuthHelper
     end
   end
 

@@ -1,0 +1,35 @@
+<div class="container">
+  <h2><%= gettext("Edit Profile") %></h2>
+
+  <%= form_for @changeset, Routes.profile_path(@conn, :update), [multipart: true], fn f -> %>
+    <%= LunchWeb.ErrorView.alert_component(@changeset) %>
+
+    <div class="form-group">
+      <%= label f, :first, gettext("First"), class: "control-label" %>
+      <%= text_input f, :first, class: "form-control" %>
+      <%= error_tag f, :first %>
+    </div>
+
+    <div class="form-group">
+      <%= label f, :last, gettext("Last"), class: "control-label" %>
+      <%= text_input f, :last, class: "form-control" %>
+      <%= error_tag f, :last %>
+    </div>
+
+    <div class="form-group">
+      <%= label f, :slug, gettext("Slug"), class: "control-label" %>
+      <%= text_input f, :slug, class: "form-control" %>
+      <%= error_tag f, :slug %>
+    </div>
+
+    <div class="form-group">
+      <%= label f, :description, gettext("Description"), class: "control-label" %>
+      <%= textarea f, :description, class: "form-control" %>
+      <%= error_tag f, :description %>
+    </div>
+
+    <div class="form-group">
+      <%= submit gettext("Submit"), class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

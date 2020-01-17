@@ -1,0 +1,4 @@
+<%= demote_member_link(@org_profile, @org, @conn) %>
+<%= promote_member_link(@org_profile, @org, @conn) %>
+<%= remove_member_link(@org_profile, @org, @conn) %>
+<%= quit_group_link(@org_profile, @org, @conn) %>

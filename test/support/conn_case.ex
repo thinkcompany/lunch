@@ -21,10 +21,30 @@ defmodule LunchWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
+      alias Lunch.Signup
+      alias LunchWeb.Guardian.Tokenizer.Plug, as: GuardianPlug
       alias LunchWeb.Router.Helpers, as: Routes
+      alias Plug.Conn
 
       # The default endpoint for testing
       @endpoint LunchWeb.Endpoint
+
+      @spec authed_conn(Conn.t()) :: Conn.t()
+      def authed_conn(conn) do
+        user_params = %{password: "some password", username: "some username"}
+        {:ok, user} = Signup.create_user(user_params)
+
+        conn
+        |> bypass_through(Routes, [:browser, :guardian, :ensure_auth])
+        |> GuardianPlug.sign_in(user)
+      end
+
+      @spec authed_conn(Conn.t(), Ecto.Schema.t()) :: Conn.t()
+      def authed_conn(conn, user) do
+        conn
+        |> bypass_through(Routes, [:browser, :guardian, :ensure_auth])
+        |> GuardianPlug.sign_in(user)
+      end
     end
   end
 

@@ -65,6 +65,10 @@ config :lunch, LunchWeb.Endpoint,
     ]
   ]
 
+config :lunch, LunchWeb.Guardian.Tokenizer,
+  issuer: "lunch",
+  secret_key: "hLHQsT1AmbgE4bfRYbVEsefepbFwFnhp5yCyv3zxVisHXiVy2mSvT3hO+DLx47DK"
+
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 

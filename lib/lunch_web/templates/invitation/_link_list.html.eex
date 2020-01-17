@@ -1,0 +1,10 @@
+<%= if not (@conn |> invitations() |> Enum.empty?()) do %>
+  <li><%= gettext("Your Invitations") %>
+    <ul>
+      <%= for %{id: id, organization: org} <- invitations(@conn) do %>
+        <li><%= org.name %> <%= link "(Accept)", to: Routes.organization_invite_user_path(@conn, :update, org.slug, id) %>
+        </li>
+      <% end %>
+    </ul>
+  </li>
+<% end %>

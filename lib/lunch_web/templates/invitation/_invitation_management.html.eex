@@ -1,0 +1,16 @@
+<%= if current_user_admin?(@conn) do %>
+<h2><%= gettext("Invites") %></h2>
+<ul>
+  <%= for invitation <- @org.invitations do %>
+  <li>
+    <%=
+      link gettext("(Remove)"), to: Routes.organization_invitation_path(@conn, :delete, @org.slug, invitation),
+                                method: :delete,
+                                data: [confirm: "Are you sure?"]
+    %>
+    <%= invitation.email %>
+  </li>
+  <% end %>
+  <li><%= link(gettext("New Member"), to: Routes.organization_invitation_path(@conn, :new, @org.slug)) %></li>
+</ul>
+<% end %>

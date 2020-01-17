@@ -1,0 +1,9 @@
+<%= if not Enum.empty?(organizations(@conn)) do %>
+  <li><%= gettext("Your Groups") %>
+    <ul>
+      <%= for org <- organizations(@conn) do %>
+        <li><%= link org.name, to: Routes.organization_path(@conn, :show, org.slug) %></li>
+      <% end %>
+    </ul>
+  </li>
+<% end %>

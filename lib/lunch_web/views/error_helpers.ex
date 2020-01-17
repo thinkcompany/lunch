@@ -8,6 +8,8 @@ defmodule LunchWeb.ErrorHelpers do
   @doc """
   Generates tag for inlined form input errors.
   """
+  #
+  # credo:disable-for-next-line Credo.Check.Readability.Specs
   def error_tag(form, field) do
     Enum.map(Keyword.get_values(form.errors, field), fn error ->
       content_tag(:span, translate_error(error), class: "help-block")
@@ -17,6 +19,8 @@ defmodule LunchWeb.ErrorHelpers do
   @doc """
   Translates an error message using gettext.
   """
+  #
+  # credo:disable-for-next-line Credo.Check.Readability.Specs
   def translate_error({msg, opts}) do
     # When using gettext, we typically pass the strings we want
     # to translate as a static argument:

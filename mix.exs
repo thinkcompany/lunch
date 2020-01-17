@@ -43,9 +43,12 @@ defmodule Lunch.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-
-      {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false}
+      # Linting
+      {:credo, "~> 1.0", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false},
+      # For authentication
+      {:bcrypt_elixir, "~> 2.0"},
+      {:guardian, "~> 1.0"}
     ]
   end
 

@@ -1,0 +1,5 @@
+<div class="container">
+  <h2><%= gettext("Log In") %></h2>
+
+  <%= render LunchWeb.SharedView, "user_form.html", Map.put(assigns, :action, Routes.auth_user_path(@conn, :create)) %>
+</div>

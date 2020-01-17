@@ -24,7 +24,7 @@ defmodule LunchWeb.Endpoint do
   end
 
   plug Plug.RequestId
-  plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
+  plug Plug.Logger
 
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
@@ -40,7 +40,7 @@ defmodule LunchWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_lunch_key",
-    signing_salt: "WI7CW2L8"
+    signing_salt: "3vF1ApDq"
 
   plug LunchWeb.Router
 end
